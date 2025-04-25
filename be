@@ -444,8 +444,8 @@ Explain ← {
   <˘∾(∾" "‿src‿" ")‿out
 }
 
-ch←•FLines "/dev/stdin"
+ch←•FChars "/dev/stdin"
 # TODO parse all free variables
-c←⟨⟩ Compile ch
-•Out c Explain ch
+c ← ⟨1⊸⊑¨•primitives, {𝕊:𝕩}, ⟨⟩⟩ Compile ch
+•Out ∾∾⟜(@+10)¨c Explain ch
 
