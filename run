@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+find . -name 'be' -o -name '*.sh' -o -name 'expect' | entr ./test.sh $@
