@@ -378,6 +378,7 @@ Compile←{
   defaults←⟨⟩‿(!∘"System values not supported"¨)‿⟨⟩‿(↕0)
   prims‿Sys‿vars‿redef ← ∾⟜(≠↓defaults˙) ⋈⍟(4<≠)𝕨
   ⟨tok,role,val,t0,t1⟩←tx←sys‿vars Tokenize 𝕩
+  vars↩⊑val                                 # Define all values from val as variables to prevent compiler errors
   ⟨oc,prim,blk,bdy,oi⟩←⟨role,≠⊑val,t0,t1,redef»0¨vars⟩ Parse tok
   ⟨oc, ∾⟨prim⊏prims⟩∾1↓val, <˘⍉>blk, <˘⍉>bdy, oi, tx⟩
 }
@@ -445,7 +446,5 @@ Explain ← {
 }
 
 ch←•FChars "/dev/stdin"
-# TODO parse all free variables
-c ← ⟨1⊸⊑¨•primitives, {𝕊:𝕩}, ⟨⟩⟩ Compile ch
+c ← ⟨1⊸⊑¨•primitives, {𝕊:𝕩}, ⟨"b"⟩⟩ Compile ch
 •Out ∾∾⟜(@+10)¨c Explain ch
-

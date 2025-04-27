@@ -1,2 +1,8 @@
 #! /usr/bin/env bash
-echo "1+1" | ./be
+
+test(){
+    echo $1 | ./be
+}
+
+test "1+1"
+test "•Show a+1+1"
