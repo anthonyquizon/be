@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 test(){
-    echo $1 | ./be
+    ./be $1
 }
 
 test "1+1"

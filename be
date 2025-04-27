@@ -1,5 +1,7 @@
 #!/usr/bin/env bqn
 
+# copied glyphs.bqn from https://github.com/mlochbaum/BQN/blob/master/src/glyphs.bqn
+# copied c.bqn from https://github.com/mlochbaum/BQN/blob/master/src/c.bqn
 # BQN primitive glyphs: functions, 1-modifiers, 2-modifiers
 func‿mod1‿mod2 ← ⟨
   "+-×÷⋆√⌊⌈|¬∧∨<>≠=≤≥≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!"
@@ -388,6 +390,7 @@ Compile←{
 
 wh ← 1‿1
 
+# copied eu.bqn from https://github.com/mlochbaum/BQN/blob/master/src/eu.bqn
 Explain ← {
   b‿const‿blk‿bdy‿(i‿e)‿tok ← 𝕨
   ba‿bc‿bo‿bp ← (⊏/¨1⊸↓)'0'-˜⟨ # For each instruction, number of:
@@ -445,6 +448,8 @@ Explain ← {
   <˘∾(∾" "‿src‿" ")‿out
 }
 
-ch←•FChars "/dev/stdin"
-c ← ⟨1⊸⊑¨•primitives, {𝕊:𝕩}, ⟨"b"⟩⟩ Compile ch
+{𝕊:•Out "Usage: be [string]"⋄•Exit 0}⍟(0⊸=)≠•args
+
+ch←'{'∾(⊑•args)∾'}' # surround with {} so that 𝕩 and 𝕨 are parsed
+c ← ⟨1⊸⊑¨•primitives, {𝕊:𝕩}, ⟨⟩⟩ Compile ch
 •Out ∾∾⟜(@+10)¨c Explain ch
