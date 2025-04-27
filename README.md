@@ -1,6 +1,9 @@
 # BE
 BQN Explainer
 
+![Untitled](https://github.com/user-attachments/assets/0371f47c-6b44-4b2f-b496-bfc8e62ed11e)
+
+
 ## Vim 
 Add this to .vimrc with be installed in `$PATH`
 ```vimscript
