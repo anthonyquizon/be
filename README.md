@@ -8,9 +8,11 @@ BQN Explainer
 Add this to .vimrc with `be` installed in `$PATH`
 ```vimscript
 fu! BQN_Exp(l)
-  echo system('be ' . '"'.a:l.'"')
+  let t=substitute(a:l, "`", "\\\\`", "g") "escape backtick
+  echo system('be ' . '"'.t.'"')
 endf
 vn <leader>e "vy :call BQN_Exp(@v)<cr>
+nn <leader>e :call BQN_Exp(getline('.'))<cr>
 ```
 
 ## TODO
