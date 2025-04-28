@@ -450,6 +450,13 @@ Explain ← {
 
 {𝕊:•Out "Usage: be [string]"⋄•Exit 0}⍟(0⊸=)≠•args
 
-ch←'{'∾(⊑•args)∾'}' # surround with {} so that 𝕩 and 𝕨 are parsed
-c ← ⟨1⊸⊑¨•primitives, {𝕊:𝕩}, ⟨⟩⟩ Compile ch
+Catch←{ 𝕊:
+  •Out "Could not parse"
+  •Exit 1
+}
+
+ch←{𝕩⊏˜⊑⊔+`(@+10)⍷𝕩}⊑•args # only take one
+ch↩ch/˜⟜¬+`"#"⍷ch          # remove comments
+ch↩'{'∾ch∾'}'              # surround with {} so that 𝕩 and 𝕨 are parsed
+c ← ⟨1⊸⊑¨•primitives, {𝕊:𝕩}, ⟨⟩⟩⊸Compile⎊Catch ch
 •Out ∾∾⟜(@+10)¨c Explain ch
